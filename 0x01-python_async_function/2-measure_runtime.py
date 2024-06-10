@@ -13,10 +13,7 @@ async def measure_time(n: int, max_delay: int) -> float:
     """
     function to measure average runtime
     """
-    starting_time = time.strftime("%S")
+    starting_time = time.perf_counter()
     await wait_n(n, max_delay)
-    elapsed_time = time.strftime("%S")
-
-    total_time = int(elapsed_time) - int(starting_time)
-    print(f'total time {total_time}')
+    total_time = time.perf_counter() - starting_time
     return float(total_time/n)
