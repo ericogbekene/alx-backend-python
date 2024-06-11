@@ -18,6 +18,6 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
 
     for i in range(len(results)):
         for j in range(len(results) - i - 1):
-            if results[j] > results[j + 1]: 
+            if results[j] > results[j + 1]:
                 results[j], results[j + 1] = results[j + 1], results[j]
     return results
