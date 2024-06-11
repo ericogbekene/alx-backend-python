@@ -13,4 +13,7 @@ async def async_comprehension() -> Generator[int, None, None]:
     """
     generating an async comprehension
     """
-    return [i async for i in async_generator()]
+    results = []
+    async for item in async_generator():
+        results.append(item)
+    return results
