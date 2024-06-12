@@ -8,15 +8,14 @@ import asyncio
 async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
-async def measure_runtime():
+async def measure_runtime() -> float:
     """
     async coroutine to measure runtime
     """
-    start_time = asyncio.get_event_loop().time()
+    start_time: float = asyncio.get_event_loop().time()
     await asyncio.gather\
         (async_comprehension(), async_comprehension(),
          async_comprehension(), async_comprehension())
-    end_time = asyncio.get_event_loop().time()
-    total_time = end_time - start_time
-    print(f"Total runtime: {total_time:.2f} seconds")
+    end_time: float = asyncio.get_event_loop().time()
+    total_time: float = end_time - start_time
     return total_time
