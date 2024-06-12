@@ -5,10 +5,10 @@ module to create an async function generator
 
 import asyncio
 import random
-from typing import Generator
+from typing import Generator, AsyncGenerator
 
 
-async def async_generator() -> Generator[int, None, None]:
+async def async_generator() -> AsyncGenerator[float, None]:
     """
     async generator to yield a random number
     """
