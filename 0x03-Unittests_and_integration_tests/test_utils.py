@@ -4,7 +4,7 @@ creating a Unit test module
 """
 
 import unittest
-from parameterized import parameterized, parameterized_class
+from parameterized import parameterized, param
 from unittest.mock import patch
 from utils import access_nested_map, get_json, memoize
 from typing import Mapping, Sequence
@@ -18,7 +18,7 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2)
         ])
-    def test_access_nested_map(self, nested_map: Mapping, path: Sequence, expected):
+    def test_access_nested_map(self, nested_map, path, expected):
         """
         test class
         """
@@ -28,10 +28,10 @@ class TestAccessNestedMap(unittest.TestCase):
         ({}, ("a",)),
         ({"a": 1}, ("a", "b"))
         ])
-    def test_access_nested_map_exception(self, nested_map: Mapping, path: Sequence):
+    def test_access_nested_map_exception(self, nested_map, path):
         """
         test that the method raises an Error
         """
         with self.assertRaises(KeyError) as error:
             access_nested_map(nested_map, path)
-        self.assertEqual(str(error.exception), str(path[-1]))
+        self.assertEqual(error.exception.args[0], path[-1])
